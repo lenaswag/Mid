@@ -1,0 +1,1236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Habits Lab | English Expression Challenge</title>
+<style>
+:root {
+  --navy:#18334b;
+  --teal:#087f8c;
+  --teal-dark:#086773;
+  --teal-light:#e6f6f5;
+  --bg:#f4f7fa;
+  --white:#ffffff;
+  --muted:#64748b;
+  --line:#dce5ec;
+  --green:#18794e;
+  --green-bg:#e9f7ef;
+  --red:#b63d4b;
+  --red-bg:#fff0f1;
+  --amber:#8c630b;
+  --amber-bg:#fff5d7;
+  --yellow:#fff0a8;
+  --shadow:0 12px 36px rgba(24,51,75,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--navy);
+  font-family:Arial,"Noto Sans KR",sans-serif;
+  line-height:1.65;
+}
+button,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+button:focus-visible,textarea:focus-visible{
+  outline:3px solid #6ccbd0;
+  outline-offset:3px;
+}
+header{
+  background:var(--navy);
+  color:white;
+  padding:17px 24px;
+}
+.header-inner{
+  max-width:1060px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.brand{font-size:21px;font-weight:800;letter-spacing:-.5px}
+.brand-sub{font-size:12px;color:#b9ccd9}
+.header-right{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.timer{
+  background:rgba(255,255,255,.12);
+  padding:7px 14px;
+  border-radius:30px;
+  font-size:13px;
+  white-space:nowrap;
+}
+main{max-width:1060px;margin:26px auto;padding:0 18px 50px}
+.step-labels{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:8px;
+}
+.step-label{
+  font-size:12px;
+  font-weight:700;
+  color:var(--muted);
+  text-align:center;
+}
+.step-label.active{color:var(--teal)}
+.progress-track{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:23px;
+}
+.progress-segment{
+  height:7px;
+  background:#dce5ec;
+  border-radius:20px;
+}
+.progress-segment.done{background:var(--teal)}
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:30px;
+  box-shadow:var(--shadow);
+}
+.eyebrow{
+  color:var(--teal);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.3px;
+  text-transform:uppercase;
+}
+h1{font-size:29px;line-height:1.25;margin:9px 0 12px}
+h2{font-size:22px;line-height:1.35;margin:12px 0}
+h3{font-size:17px;margin:8px 0}
+p{margin:9px 0}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.tag{
+  display:inline-block;
+  background:var(--teal-light);
+  color:var(--teal-dark);
+  font-size:12px;
+  font-weight:700;
+  border-radius:20px;
+  padding:4px 11px;
+}
+.btn{
+  background:var(--teal);
+  color:white;
+  border:1px solid var(--teal);
+  border-radius:11px;
+  padding:11px 20px;
+  font-weight:700;
+  transition:.15s;
+}
+.btn:hover:not(:disabled){filter:brightness(.94);transform:translateY(-1px)}
+.btn.secondary{
+  background:#edf3f6;
+  color:var(--navy);
+  border-color:#edf3f6;
+}
+.btn.outline{
+  background:white;
+  color:var(--teal);
+  border-color:#b8d9dd;
+}
+.actions{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:26px;
+  flex-wrap:wrap;
+}
+.hero{
+  background:linear-gradient(125deg,#e5f8f5,#edf3ff);
+  padding:28px;
+  border-radius:18px;
+  margin:20px 0;
+}
+.hero-icon{font-size:43px}
+.info{
+  background:var(--teal-light);
+  padding:15px 17px;
+  border-radius:12px;
+  margin:15px 0;
+}
+.feedback{
+  padding:12px 15px;
+  border-radius:11px;
+  margin-top:13px;
+  font-size:14px;
+}
+.feedback.good{background:var(--green-bg);color:var(--green)}
+.feedback.bad{background:var(--red-bg);color:var(--red)}
+.feedback.hint{background:var(--amber-bg);color:var(--amber)}
+.reading{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:24px;
+  font-size:17px;
+  line-height:2.2;
+  margin-top:18px;
+}
+.target-bold{font-weight:800}
+.highlight-expression{
+  display:inline;
+  background:var(--yellow);
+  border:0;
+  border-bottom:2px solid #d9ae37;
+  border-radius:4px;
+  padding:2px 5px;
+  color:var(--navy);
+  font-weight:800;
+  line-height:inherit;
+}
+.highlight-expression:hover{background:#ffe47d}
+.highlight-expression.visited{background:#d7f2e9;border-color:var(--green)}
+.expression-detail{
+  background:var(--teal-light);
+  padding:17px;
+  border-radius:13px;
+  margin-top:15px;
+}
+.expression-detail h3{margin:0}
+.expression-detail .meaning{
+  color:var(--teal-dark);
+  font-weight:700;
+}
+.speak{
+  background:#e4f4f4;
+  color:var(--teal-dark);
+  border:0;
+  border-radius:8px;
+  padding:5px 9px;
+  margin-left:6px;
+  font-size:14px;
+}
+.speak:hover{background:#d0eded}
+.question{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:19px;
+  margin:16px 0;
+}
+.question-number{
+  font-size:11px;
+  font-weight:800;
+  color:var(--teal);
+  letter-spacing:1px;
+  margin-bottom:5px;
+}
+.question-title{font-size:16px;font-weight:700;margin-bottom:12px}
+.options{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.option{
+  background:white;
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  padding:11px 13px;
+  text-align:left;
+  color:var(--navy);
+  transition:.15s;
+}
+.option:hover:not(:disabled){border-color:var(--teal)}
+.option.correct{border-color:var(--green);background:var(--green-bg)}
+.option.wrong{border-color:var(--red);background:var(--red-bg)}
+.option.selected{border-color:var(--teal);background:var(--teal-light)}
+.mini-progress{
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  margin:13px 0;
+}
+.review-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:18px 0;
+}
+.review-item{
+  background:#f7fafc;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:13px 15px;
+}
+.review-item strong{display:block;font-size:15px}
+.review-item .ko{color:var(--teal-dark);font-size:14px}
+.review-item .en{font-size:12px;color:var(--muted)}
+.bank{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin:18px 0;
+}
+.bank-word{
+  border:1.5px solid #b8d9dd;
+  background:var(--teal-light);
+  color:var(--navy);
+  border-radius:10px;
+  padding:9px 13px;
+  font-weight:700;
+}
+.bank-word.active{background:var(--teal);color:white}
+.bank-word.used{
+  background:#eef1f3;
+  color:#9aa8b3;
+  border-color:#e2e8ee;
+}
+.blank{
+  display:inline-block;
+  min-width:125px;
+  padding:1px 8px;
+  border-bottom:2px solid var(--teal);
+  color:var(--teal-dark);
+  font-weight:800;
+  text-align:center;
+}
+.sentence-list{display:grid;gap:12px}
+.sentence-row{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:16px;
+}
+.sentence-row .sentence-text{font-size:16px;margin-bottom:9px}
+.row-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.mini-select{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:9px;
+  padding:8px 12px;
+  color:var(--navy);
+  font-weight:700;
+}
+.mini-select.active{background:var(--teal-light);border-color:var(--teal)}
+.mini-select.correct{background:var(--green-bg);border-color:var(--green)}
+.mini-select.wrong{background:var(--red-bg);border-color:var(--red)}
+.choice-grid{display:grid;gap:10px}
+.choice-card{
+  background:white;
+  border:1.5px solid var(--line);
+  padding:13px 15px;
+  border-radius:11px;
+  text-align:left;
+  color:var(--navy);
+}
+.choice-card:hover:not(:disabled){border-color:var(--teal)}
+.choice-card.correct{background:var(--green-bg);border-color:var(--green)}
+.choice-card.wrong{background:var(--red-bg);border-color:var(--red)}
+.writing-select{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin:18px 0;
+}
+.writing-choice{
+  background:white;
+  border:1.5px solid var(--line);
+  padding:11px;
+  border-radius:10px;
+  text-align:left;
+  color:var(--navy);
+}
+.writing-choice.active{
+  background:var(--teal-light);
+  border-color:var(--teal);
+  font-weight:800;
+}
+textarea{
+  display:block;
+  width:100%;
+  min-height:105px;
+  resize:vertical;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  padding:14px;
+  color:var(--navy);
+  background:white;
+  line-height:1.7;
+}
+.sentence-starter{
+  background:#fff8e6;
+  border:1px solid #f0dcaa;
+  padding:16px;
+  border-radius:12px;
+  margin:14px 0;
+}
+.checklist{
+  display:grid;
+  gap:10px;
+  margin:15px 0;
+}
+.checkline{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px;
+  font-size:14px;
+}
+.checkline input{width:17px;height:17px;accent-color:var(--teal)}
+.recall-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin:20px 0;
+}
+.recall-card{
+  background:#f8fafc;
+  border:1.5px solid var(--line);
+  border-radius:14px;
+  padding:17px;
+  text-align:center;
+  min-height:135px;
+}
+.recall-card.revealed{border-color:#b8d9dd;background:#f2fbfa}
+.recall-card strong{display:block;font-size:17px;margin-bottom:8px}
+.recall-card .meaning{color:var(--teal-dark);font-size:14px}
+.recall-card .reveal-btn{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:5px 12px;
+  margin-top:10px;
+  font-size:12px;
+  color:var(--navy);
+}
+.recall-card .remember{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  font-size:13px;
+  margin-top:10px;
+}
+.recall-card input{accent-color:var(--teal)}
+.score-circle{
+  width:145px;height:145px;
+  border-radius:50%;
+  border:11px solid #bce6e4;
+  background:var(--teal-light);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  margin:22px auto;
+}
+.score-circle strong{font-size:37px;line-height:1.2;color:var(--teal)}
+.score-circle span{font-size:12px;color:var(--muted)}
+.result-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:20px 0;
+}
+.stat{
+  background:#f3f8fa;
+  border-radius:12px;
+  padding:16px;
+  text-align:center;
+}
+.stat strong{display:block;font-size:24px}
+.stat span{font-size:12px;color:var(--muted)}
+.written-result{
+  border-left:4px solid var(--teal);
+  background:#f4faf9;
+  padding:16px;
+  border-radius:0 12px 12px 0;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+.divider{border:0;border-top:1px solid var(--line);margin:25px 0}
+.hidden{display:none!important}
+@media(max-width:680px){
+  .card{padding:20px}
+  h1{font-size:25px}
+  h2{font-size:20px}
+  .reading{font-size:15px;padding:16px}
+  .options,.review-grid,.writing-select,.recall-grid{grid-template-columns:1fr}
+  .result-stats{grid-template-columns:1fr 1fr}
+  .step-label{font-size:10px}
+  .actions .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">✦ Study Habits Lab</div>
+      <div class="brand-sub">6 expressions · 10-minute English challenge</div>
+    </div>
+    <div class="header-right">
+      <div class="timer" id="timer">⏱ 10:00</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="step-labels" id="stepLabels"></div>
+  <div class="progress-track" id="progressTrack"></div>
+  <div class="card" id="app" aria-live="polite"></div>
+</main>
+
+<script>
+"use strict";
+
+const expressions = [
+  {
+    exp:"keep track of",
+    ko:"~을 기록하고 파악하다",
+    en:"to record or monitor something",
+    context:"Jisoo records how long she studies each day.",
+    example:"I keep track of my study time every day.",
+    starter:"I keep track of ______ every day."
+  },
+  {
+    exp:"take a break",
+    ko:"휴식을 취하다",
+    en:"to stop an activity for a short rest",
+    context:"Jisoo stops studying for a short time to rest.",
+    example:"I take a break after studying for an hour.",
+    starter:"I usually take a break when ______."
+  },
+  {
+    exp:"stay away from",
+    ko:"~을 멀리하다, 피하다",
+    en:"to avoid something or someone",
+    context:"Jisoo avoids using her phone while studying.",
+    example:"I stay away from my phone while studying.",
+    starter:"When I study, I try to stay away from ______."
+  },
+  {
+    exp:"get enough sleep",
+    ko:"충분한 수면을 취하다",
+    en:"to sleep as much as you need",
+    context:"Jisoo makes sure she sleeps enough.",
+    example:"I try to get enough sleep before exams.",
+    starter:"I ______ to get enough sleep."
+  },
+  {
+    exp:"deal with",
+    ko:"~에 대처하다, 다루다",
+    en:"to manage a problem or difficult situation",
+    context:"Jisoo manages stress by taking a walk.",
+    example:"I deal with stress by taking a short walk.",
+    starter:"I deal with stress by ______."
+  },
+  {
+    exp:"stick to",
+    ko:"~을 꾸준히 지키다",
+    en:"to continue following a plan or decision",
+    context:"Jisoo continues following her new routine.",
+    example:"I try to stick to my study schedule.",
+    starter:"I try to stick to ______."
+  }
+];
+
+const storyParts = [
+  "Jisoo wanted to improve her study habits before the exam period. She began to ",
+  " how long she studied each day. She also learned when to ",
+  " instead of studying for too long. While studying, she tried to ",
+  " her phone and made sure to ",
+  ". When she felt stressed, she learned how to ",
+  " it by taking a short walk. After several weeks, she found it easier to ",
+  " her new routine."
+];
+
+const guessingQuestions = [
+  {
+    word:0,
+    question:"Jisoo wanted to know how long she studied each day. What does 'keep track of' mean?",
+    choices:[
+      "To record or monitor something",
+      "To stop doing something",
+      "To forget something"
+    ],
+    answer:0,
+    hint:"Think about how Jisoo knows the number of hours she studies.",
+    explanation:"Jisoo records or monitors her study time."
+  },
+  {
+    word:4,
+    question:"Jisoo takes a walk when she feels stressed. What does 'deal with' mean?",
+    choices:[
+      "To avoid all activities",
+      "To manage a problem or situation",
+      "To make a problem worse"
+    ],
+    answer:1,
+    hint:"Her short walk helps her manage stress.",
+    explanation:"Jisoo manages stress by taking a walk."
+  },
+  {
+    word:5,
+    question:"After several weeks, Jisoo continues following her routine. What does 'stick to' mean?",
+    choices:[
+      "To change a plan every day",
+      "To stop following a plan",
+      "To continue following a plan"
+    ],
+    answer:2,
+    hint:"She keeps following the same routine.",
+    explanation:"Jisoo continues following her new routine."
+  }
+];
+
+const blanks = [
+  {
+    before:"I use a notebook to ",
+    after:" how many hours I study.",
+    answer:0,
+    hint:"You want to record and monitor information.",
+    explanation:"Keep track of means to record or monitor something."
+  },
+  {
+    before:"You look tired. You should ",
+    after:" for ten minutes.",
+    answer:1,
+    hint:"You need to stop working for a short rest.",
+    explanation:"Take a break means to stop an activity briefly to rest."
+  },
+  {
+    before:"To focus better, I try to ",
+    after:" social media.",
+    answer:2,
+    hint:"You want to avoid a distraction.",
+    explanation:"Stay away from means to avoid something."
+  },
+  {
+    before:"Don't stay up too late. You need to ",
+    after:".",
+    answer:3,
+    hint:"Think about a healthy nighttime habit.",
+    explanation:"Get enough sleep means to sleep as much as you need."
+  },
+  {
+    before:"Talking to a friend helps me ",
+    after:" my worries.",
+    answer:4,
+    hint:"You want to manage a difficult feeling.",
+    explanation:"Deal with means to manage a problem or situation."
+  },
+  {
+    before:"I made a weekly study plan. I want to ",
+    after:" it.",
+    answer:5,
+    hint:"You want to continue following your plan.",
+    explanation:"Stick to means to continue following a plan."
+  }
+];
+
+const mistakes = [
+  {
+    choices:[
+      "I need to deal my stress.",
+      "I need to deal with my stress."
+    ],
+    answer:1,
+    hint:"Check the preposition after 'deal'.",
+    explanation:"Use 'deal with + noun'."
+  },
+  {
+    choices:[
+      "I try to stick to my study plan.",
+      "I try to stick with to my study plan."
+    ],
+    answer:0,
+    hint:"The target expression is 'stick to'. Check the words after 'stick'.",
+    explanation:"Use 'stick to + noun'."
+  },
+  {
+    choices:[
+      "I keep track my homework deadlines.",
+      "I keep track of my homework deadlines."
+    ],
+    answer:1,
+    hint:"Check whether a preposition is missing after 'track'.",
+    explanation:"Use 'keep track of + noun'."
+  }
+];
+
+let stage = 0;
+let guessingIndex = 0;
+let guessingStates = guessingQuestions.map(()=>({attempts:0,done:false,correct:false,last:-1}));
+let visited = new Set();
+let selectedExpression = null;
+let blankStates = blanks.map(()=>({attempts:0,done:false,correct:false,last:-1}));
+let blankIndex = 0;
+let mistakeStates = mistakes.map(()=>({attempts:0,done:false,correct:false,last:-1}));
+let mistakeIndex = 0;
+let writingExpression = 5;
+let writingText = "";
+let showStarter = false;
+let writingChecks = [false,false,false];
+let writingCompleted = false;
+let recallRevealed = new Set();
+let recallKnown = new Set();
+let startedAt = null;
+let timerInterval = null;
+
+const app = document.getElementById("app");
+
+function esc(s){
+  return String(s).replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+
+function speak(text){
+  if(!("speechSynthesis" in window)){
+    alert("Audio is not supported in this browser.");
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  utterance.rate = 0.85;
+  speechSynthesis.speak(utterance);
+}
+
+function startTimer(){
+  if(startedAt!==null)return;
+  startedAt=Date.now();
+  timerInterval=setInterval(updateTimer,1000);
+  updateTimer();
+}
+function updateTimer(){
+  if(startedAt===null)return;
+  const elapsed=Math.floor((Date.now()-startedAt)/1000);
+  const remaining=Math.max(0,600-elapsed);
+  const m=Math.floor(remaining/60);
+  const s=String(remaining%60).padStart(2,"0");
+  document.getElementById("timer").textContent=
+    remaining===0?"⏱ Keep going!":`⏱ ${m}:${s}`;
+}
+
+function currentSection(){
+  if(stage<=2)return 0;
+  if(stage<=4)return 1;
+  if(stage===5)return 2;
+  return 3;
+}
+function renderProgress(){
+  const labels=["Reading","Practice","Writing","Final Review"];
+  const current=currentSection();
+  document.getElementById("stepLabels").innerHTML=
+    labels.map((label,i)=>`<div class="step-label ${i===current?"active":""}">${label}</div>`).join("");
+  document.getElementById("progressTrack").innerHTML=
+    labels.map((_,i)=>`<div class="progress-segment ${i<=current?"done":""}"></div>`).join("");
+}
+function go(n){
+  stage=n;
+  window.scrollTo({top:0,behavior:"instant"});
+  render();
+}
+function btn(label,fn,cls="btn",disabled=false){
+  return `<button type="button" class="${cls}" onclick="${fn}" ${disabled?"disabled":""}>${label}</button>`;
+}
+function render(){
+  renderProgress();
+  if(stage===0)renderWelcome();
+  if(stage===1)renderGuessing();
+  if(stage===2)renderNoticing();
+  if(stage===3)renderBlanks();
+  if(stage===4)renderMistakes();
+  if(stage===5)renderWriting();
+  if(stage===6)renderRecall();
+  if(stage===7)renderResults();
+}
+function begin(){startTimer();go(1);}
+
+function renderWelcome(){
+  app.innerHTML=`
+  <div class="eyebrow">Welcome · Your learning mission</div>
+  <div class="hero">
+    <div class="hero-icon">📚 ✨</div>
+    <h1>Build Better Study Habits</h1>
+    <p>Discover six useful English expressions and learn how to use them in real life.</p>
+    <span class="tag">Grade 8 · A2–B1 · About 10 minutes</span>
+  </div>
+  <h2>Today's Mission</h2>
+  <p>By the end of this activity, you can:</p>
+  <p>✓ Understand six expressions in a short story.</p>
+  <p>✓ Choose and recognize expressions in new sentences.</p>
+  <p>✓ Write your own sentence about study habits.</p>
+  <div class="info">💡 You can try again when you make a mistake. Hints will help you learn!</div>
+  <div class="actions"><span></span>${btn("Start Learning →","begin()")}</div>`;
+}
+
+function storyHTML(highlight){
+  let html="";
+  for(let i=0;i<6;i++){
+    html+=esc(storyParts[i]);
+    const exp=esc(expressions[i].exp);
+    if(highlight){
+      html+=`<button type="button" class="highlight-expression ${visited.has(i)?"visited":""}"
+        onclick="openExpression(${i})">${exp}</button>`;
+    }else if([0,4,5].includes(i)){
+      html+=`<strong class="target-bold">${exp}</strong>`;
+    }else{
+      html+=exp;
+    }
+  }
+  return html+esc(storyParts[6]);
+}
+
+function feedbackFor(state,question){
+  if(state.done){
+    if(state.correct){
+      return `<div class="feedback good">✓ Great job! ${esc(question.explanation)}</div>`;
+    }
+    return `<div class="feedback bad">The correct answer is:
+      <strong>${esc(question.choices[question.answer])}</strong><br>
+      ${esc(question.explanation)}</div>`;
+  }
+  if(state.attempts===1){
+    return `<div class="feedback bad">Not quite! Try again.</div>`;
+  }
+  if(state.attempts===2){
+    return `<div class="feedback hint">💡 Here's a hint: ${esc(question.hint)}</div>`;
+  }
+  return "";
+}
+
+function answerGuess(choice){
+  const q=guessingQuestions[guessingIndex];
+  const s=guessingStates[guessingIndex];
+  if(s.done)return;
+  s.attempts++;
+  s.last=choice;
+  if(choice===q.answer){
+    s.done=true;
+    s.correct=true;
+  }else if(s.attempts>=3){
+    s.done=true;
+  }
+  render();
+}
+
+function renderGuessing(){
+  const q=guessingQuestions[guessingIndex];
+  const s=guessingStates[guessingIndex];
+  app.innerHTML=`
+  <div class="eyebrow">Reading · Step 1 · Contextual Guessing</div>
+  <h1>Jisoo's Study Story</h1>
+  <p class="muted">Read the story and guess the meanings of three expressions from context.</p>
+  <div class="reading">${storyHTML(false)}</div>
+  <div class="mini-progress">Meaning Challenge ${guessingIndex+1} / 3</div>
+  <div class="question">
+    <div class="question-number">GUESS THE MEANING</div>
+    <div class="question-title">${esc(q.question)}</div>
+    <div class="options">
+      ${q.choices.map((choice,i)=>{
+        const cls=s.done&&i===q.answer?"correct":
+          s.last===i&&i!==q.answer?"wrong":"";
+        return `<button type="button" class="option ${cls}"
+          ${s.done?"disabled":""} onclick="answerGuess(${i})">${esc(choice)}</button>`;
+      }).join("")}
+    </div>
+    ${feedbackFor(s,q)}
+  </div>
+  <div class="actions">
+    <span class="small muted">Read the context carefully.</span>
+    ${s.done?btn(guessingIndex===2?"Notice all expressions →":"Next Question →",
+      "nextGuess()"):""}
+  </div>`;
+}
+function nextGuess(){
+  if(guessingIndex<2){
+    guessingIndex++;
+    render();
+    document.querySelector(".question").scrollIntoView({block:"center"});
+  }else{
+    go(2);
+  }
+}
+
+function openExpression(i){
+  selectedExpression=i;
+  visited.add(i);
+  renderNoticing();
+}
+function renderNoticing(){
+  const w=selectedExpression===null?null:expressions[selectedExpression];
+  app.innerHTML=`
+  <div class="eyebrow">Reading · Step 2 · Noticing</div>
+  <h1>Discover the 6 Expressions</h1>
+  <p class="muted">All six expressions are highlighted. Click each one to discover its meaning.</p>
+  <div class="reading">${storyHTML(true)}</div>
+  <div class="mini-progress">Explored: ${visited.size} / 6 expressions</div>
+  ${w?`
+    <div class="expression-detail">
+      <h3>${esc(w.exp)}
+        <button type="button" class="speak" onclick="speak(expressions[${selectedExpression}].exp)">🔊 Listen</button>
+      </h3>
+      <div class="meaning">${esc(w.ko)}</div>
+      <p>${esc(w.en)}</p>
+      <p class="small">${esc(w.context)}</p>
+    </div>`:
+    `<div class="info">👆 Click a highlighted expression to explore its meaning.</div>`}
+  <hr class="divider">
+  <h2>Quick Review</h2>
+  <p class="muted">Take 20–30 seconds to review all six expressions and their meanings.</p>
+  <div class="review-grid">
+    ${expressions.map((w,i)=>`
+      <div class="review-item">
+        <strong>${esc(w.exp)}
+          <button type="button" class="speak" onclick="speak(expressions[${i}].exp)">🔊</button>
+        </strong>
+        <div class="ko">${esc(w.ko)}</div>
+      </div>`).join("")}
+  </div>
+  <div class="actions">
+    ${btn("← Reading Questions","go(1)","btn secondary")}
+    ${btn("Start Practice →","go(3)","btn",visited.size<6)}
+  </div>
+  ${visited.size<6?`<p class="small muted">Explore all six highlighted expressions to continue.</p>`:""}`;
+}
+
+function blankUsedByOther(wordIndex){
+  return blankStates.some((s,i)=>
+    i!==blankIndex&&s.done&&s.correct&&blanks[i].answer===wordIndex);
+}
+function answerBlank(choice){
+  const q=blanks[blankIndex];
+  const s=blankStates[blankIndex];
+  if(s.done)return;
+  s.attempts++;
+  s.last=choice;
+  if(choice===q.answer){
+    s.done=true;s.correct=true;
+  }else if(s.attempts>=3){
+    s.done=true;
+  }
+  render();
+}
+function nextBlank(){
+  if(blankIndex<blanks.length-1){
+    blankIndex++;
+    render();
+  }else go(4);
+}
+function renderBlanks(){
+  const q=blanks[blankIndex];
+  const s=blankStates[blankIndex];
+  app.innerHTML=`
+  <div class="eyebrow">Practice · Activity 1</div>
+  <h1>Fill in the Blanks</h1>
+  <p class="muted">Choose the best expression to complete each sentence.
+  You can try again if you make a mistake!</p>
+  <div class="mini-progress">Sentence ${blankIndex+1} / ${blanks.length}</div>
+  <div class="question">
+    <div class="question-number">COMPLETE THE SENTENCE</div>
+    <div class="question-title">
+      ${esc(q.before)}
+      <span class="blank">${s.done?esc(expressions[q.answer].exp):"________"}</span>
+      ${esc(q.after)}
+    </div>
+    <div class="bank">
+      ${expressions.map((w,i)=>{
+        const cls=s.done&&i===q.answer?"active":
+          s.last===i&&!s.done?"active":"";
+        return `<button type="button" class="bank-word ${cls}"
+          ${s.done?"disabled":""}
+          onclick="answerBlank(${i})">${esc(w.exp)}</button>`;
+      }).join("")}
+    </div>
+    ${s.done?
+      `<div class="feedback ${s.correct?"good":"hint"}">
+        ${s.correct?"✓ Great job!":"The correct expression is "+esc(expressions[q.answer].exp)+"."}
+        <br>${esc(q.explanation)}
+      </div>`:
+      s.attempts===1?`<div class="feedback bad">Not quite! Try again.</div>`:
+      s.attempts===2?`<div class="feedback hint">💡 Hint: ${esc(q.hint)}</div>`:""}
+  </div>
+  <div class="actions">
+    <span class="small muted">Think about the meaning of the whole sentence.</span>
+    ${s.done?btn(blankIndex===5?"Next Activity →":"Next Sentence →","nextBlank()"):""}
+  </div>`;
+}
+
+function answerMistake(choice){
+  const q=mistakes[mistakeIndex];
+  const s=mistakeStates[mistakeIndex];
+  if(s.done)return;
+  s.attempts++;
+  s.last=choice;
+  if(choice===q.answer){
+    s.done=true;s.correct=true;
+  }else if(s.attempts>=3){
+    s.done=true;
+  }
+  render();
+}
+function nextMistake(){
+  if(mistakeIndex<mistakes.length-1){
+    mistakeIndex++;render();
+  }else go(5);
+}
+function renderMistakes(){
+  const q=mistakes[mistakeIndex];
+  const s=mistakeStates[mistakeIndex];
+  app.innerHTML=`
+  <div class="eyebrow">Practice · Activity 2</div>
+  <h1>Spot the Mistake</h1>
+  <p class="muted">Which sentence uses the expression correctly?
+  Look carefully at the words and prepositions.</p>
+  <div class="mini-progress">Question ${mistakeIndex+1} / ${mistakes.length}</div>
+  <div class="question">
+    <div class="question-number">CHOOSE THE CORRECT SENTENCE</div>
+    <div class="choice-grid">
+      ${q.choices.map((choice,i)=>{
+        const cls=s.done&&i===q.answer?"correct":
+          s.last===i&&i!==q.answer?"wrong":"";
+        return `<button type="button" class="choice-card ${cls}"
+          ${s.done?"disabled":""}
+          onclick="answerMistake(${i})">
+          <strong>${String.fromCharCode(65+i)}.</strong> ${esc(choice)}
+        </button>`;
+      }).join("")}
+    </div>
+    ${feedbackFor(s,q)}
+  </div>
+  <div class="actions">
+    <span class="small muted">Pay attention to the whole expression.</span>
+    ${s.done?btn(mistakeIndex===2?"Start Writing →":"Next Question →","nextMistake()"):""}
+  </div>`;
+}
+
+function chooseWritingExpression(i){
+  writingExpression=i;
+  showStarter=false;
+  writingChecks=[false,false,false];
+  renderWriting();
+}
+function toggleStarter(){
+  showStarter=!showStarter;
+  renderWriting();
+}
+function updateWriting(value){
+  writingText=value;
+}
+function toggleCheck(i){
+  writingChecks[i]=!writingChecks[i];
+  renderWriting();
+}
+function finishWriting(){
+  if(!writingText.trim()||!writingChecks.every(Boolean))return;
+  writingCompleted=true;
+  go(6);
+}
+function renderWriting(){
+  app.innerHTML=`
+  <div class="eyebrow">Writing · Activity 3</div>
+  <h1>Make Your Own Sentence</h1>
+  <p>Write one sentence about your study habits using one of the six expressions.</p>
+  <p class="muted small">Choose an expression first. If you need help, click the sentence starter button.</p>
+  <h3>1. Choose an expression</h3>
+  <div class="writing-select">
+    ${expressions.map((w,i)=>`
+      <button type="button" class="writing-choice ${writingExpression===i?"active":""}"
+        onclick="chooseWritingExpression(${i})">${esc(w.exp)}</button>
+    `).join("")}
+  </div>
+  ${btn(showStarter?"Hide Sentence Starter":"💡 Need Help? Show Sentence Starter",
+    "toggleStarter()","btn outline")}
+  ${showStarter?`
+    <div class="sentence-starter">
+      <strong>Sentence Starter</strong>
+      <p>${esc(expressions[writingExpression].starter)}</p>
+      <p class="small muted">Use this sentence frame or write your own sentence.</p>
+    </div>`:""}
+  <h3 style="margin-top:23px">2. Write your sentence</h3>
+  <textarea id="writingInput"
+    placeholder="Write your own sentence here..."
+    oninput="updateWriting(this.value)">${esc(writingText)}</textarea>
+  <p class="small muted">Example: I try to stick to my study schedule.</p>
+  <hr class="divider">
+  <h3>3. Self-check & Revise</h3>
+  <p class="muted small">Read your sentence again. Check each box when you're ready.</p>
+  <div class="checklist">
+    ${[
+      "I used my chosen expression.",
+      "My sentence makes sense.",
+      "I checked my spelling and grammar."
+    ].map((text,i)=>`
+      <label class="checkline">
+        <input type="checkbox" ${writingChecks[i]?"checked":""}
+          onchange="writingChecks[${i}]=this.checked;updateWritingButton()">
+        ${esc(text)}
+      </label>`).join("")}
+  </div>
+  <div class="info small">
+    💡 You can edit your sentence before moving on. This is a self-check,
+    not an automatic grammar score.
+  </div>
+  <div class="actions">
+    <span></span>
+    ${btn("Go to Final Review →","finishWriting()","btn",
+      !writingText.trim()||!writingChecks.every(Boolean))}
+  </div>`;
+}
+function updateWritingButton(){
+  const button=app.querySelector(".actions .btn");
+  if(button)button.disabled=!writingText.trim()||!writingChecks.every(Boolean);
+}
+
+function toggleRecall(i){
+  if(recallRevealed.has(i)){
+    recallRevealed.delete(i);
+  }else{
+    recallRevealed.add(i);
+  }
+  renderRecall();
+}
+function toggleRemember(i,checked){
+  if(checked)recallKnown.add(i);
+  else recallKnown.delete(i);
+  renderRecall();
+}
+function renderRecall(){
+  app.innerHTML=`
+  <div class="eyebrow">Final Review · Memory Check</div>
+  <h1>How Many Can You Remember?</h1>
+  <p class="muted">Look at each expression. Try to remember its Korean meaning
+  <strong>before</strong> revealing the answer.</p>
+  <div class="info">🧠 Think → Reveal → Check! You don't need to remember everything perfectly.</div>
+  <div class="recall-grid">
+    ${expressions.map((w,i)=>`
+      <div class="recall-card ${recallRevealed.has(i)?"revealed":""}">
+        <strong>${esc(w.exp)}</strong>
+        ${recallRevealed.has(i)?`
+          <div class="meaning">${esc(w.ko)}</div>
+          <label class="remember">
+            <input type="checkbox" ${recallKnown.has(i)?"checked":""}
+              onchange="toggleRemember(${i},this.checked)">
+            I remembered!
+          </label>
+          <button type="button" class="reveal-btn"
+            onclick="toggleRecall(${i})">Hide meaning</button>
+        `:`
+          <div class="small muted">Can you remember the meaning?</div>
+          <button type="button" class="reveal-btn"
+            onclick="toggleRecall(${i})">Reveal Meaning</button>
+        `}
+      </div>`).join("")}
+  </div>
+  <div class="info">
+    <strong>Expressions remembered: ${recallKnown.size} / 6</strong>
+    <p class="small">This is your own memory check, not a test score.</p>
+  </div>
+  <div class="actions">
+    <span class="small muted">Take a moment to review any difficult expressions.</span>
+    ${btn("Finish My Mission →","go(7)","btn",recallRevealed.size<6)}
+  </div>`;
+}
+
+function getScore(){
+  const g=guessingStates.filter(s=>s.correct).length;
+  const b=blankStates.filter(s=>s.correct).length;
+  const m=mistakeStates.filter(s=>s.correct).length;
+  return {g,b,m,total:g+b+m};
+}
+function renderResults(){
+  if(timerInterval){
+    clearInterval(timerInterval);
+    timerInterval=null;
+  }
+  const score=getScore();
+  const elapsed=startedAt===null?0:Math.floor((Date.now()-startedAt)/1000);
+  const minutes=Math.floor(elapsed/60);
+  const seconds=String(elapsed%60).padStart(2,"0");
+  app.innerHTML=`
+  <div class="eyebrow">Mission Complete</div>
+  <h1 style="text-align:center">You Did It! 🎉</h1>
+  <p class="muted" style="text-align:center">
+    You've practiced all six expressions and written your own sentence.
+  </p>
+  <div class="score-circle">
+    <strong>${score.total}/12</strong>
+    <span>First-try or retry success</span>
+  </div>
+  <p style="text-align:center">
+    ${score.total>=10?"Excellent work!":
+      score.total>=7?"Nice progress!":"Keep practicing — you're learning!"}
+  </p>
+  <div class="result-stats">
+    <div class="stat"><strong>${score.g}/3</strong><span>Meaning Guessing</span></div>
+    <div class="stat"><strong>${score.b}/6</strong><span>Fill in the Blanks</span></div>
+    <div class="stat"><strong>${score.m}/3</strong><span>Spot the Mistake</span></div>
+  </div>
+  <p class="small muted" style="text-align:center">
+    Learning time: ${minutes}m ${seconds}s
+  </p>
+  <hr class="divider">
+  <h2>✍️ My English Sentence</h2>
+  <div class="written-result">${esc(writingText)}</div>
+  <p class="small muted">You created this sentence yourself. Your self-check
+  does not mean the sentence has been automatically grammar-checked.</p>
+  <hr class="divider">
+  <h2>🧠 My Memory Check</h2>
+  <div class="info">
+    <strong>${recallKnown.size} / 6 expressions remembered</strong>
+    <p class="small">You can keep reviewing the expressions that were difficult.</p>
+  </div>
+  <div class="review-grid">
+    ${expressions.map((w,i)=>`
+      <div class="review-item">
+        <strong>${esc(w.exp)}
+          <button type="button" class="speak" onclick="speak(expressions[${i}].exp)">🔊</button>
+        </strong>
+        <div class="ko">${esc(w.ko)}</div>
+      </div>`).join("")}
+  </div>
+  <div class="actions">
+    ${btn("← Review Again","go(6)","btn secondary")}
+    ${btn("Try the Whole Activity Again ↻","restart()")}
+  </div>`;
+}
+function restart(){
+  if(timerInterval)clearInterval(timerInterval);
+  timerInterval=null;
+  startedAt=null;
+  guessingIndex=0;
+  guessingStates=guessingQuestions.map(()=>({attempts:0,done:false,correct:false,last:-1}));
+  visited=new Set();
+  selectedExpression=null;
+  blankStates=blanks.map(()=>({attempts:0,done:false,correct:false,last:-1}));
+  blankIndex=0;
+  mistakeStates=mistakes.map(()=>({attempts:0,done:false,correct:false,last:-1}));
+  mistakeIndex=0;
+  writingExpression=5;
+  writingText="";
+  showStarter=false;
+  writingChecks=[false,false,false];
+  writingCompleted=false;
+  recallRevealed=new Set();
+  recallKnown=new Set();
+  document.getElementById("timer").textContent="⏱ 10:00";
+  go(0);
+}
+
+render();
+</script>
+</body>
+</html>
